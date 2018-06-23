@@ -1,0 +1,43 @@
+﻿<Window x:Class="VideoPlayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VideoPlayer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Closing="MainWindow_OnClosing" KeyUp="Window_KeyUp" PreviewMouseUp="Window_PreviewMouseUp"
+        >
+    <Grid Background="Black">
+        <Grid Grid.Row="0" Grid.RowSpan="{Binding RowSpan}"  Grid.Column="0" Grid.ColumnSpan="{Binding ColumnSpan}" >
+            <MediaElement x:Name="MediaElement" ScrubbingEnabled="True" MouseUp="MediaElement_MouseUp" MouseMove="MediaElement_MouseMove" />
+            <TextBlock></TextBlock>
+            </Grid>
+
+        <StackPanel Width="50" HorizontalAlignment="Right" Background="White" Opacity="{Binding VisOpa}">
+            <ListView ItemsSource="{Binding Files}"></ListView>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"  Opacity="{Binding VisOpa}" x:Name="pParentPanel">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label  Grid.Column="0" x:Name="Timenow" Background="White"  Content="{Binding Value, ElementName=Slider}"/>
+                <Slider Grid.Column="1" x:Name="Slider" Minimum="0" Value="0" TickFrequency="1"/>
+                <Label  Grid.Column="2" x:Name="togoLabel" Background="White"/>
+            </Grid>
+            <StackPanel Orientation="Horizontal" >
+                <Button Content="Start" Click="Button_Click"/>
+                <Button Content="Stop" Click="Button_Click_1"/>
+                <Button  Content="Previous" Click="Button_Click_4"/>
+                <Button Content="Next" Click="Button_Click_3"/>
+                <Button  Content="FullScreen" Command="{Binding FullScreenCommand}" Click="Button_Click_2"/>
+            </StackPanel>
+        </StackPanel>
+
+
+    </Grid>
+</Window>
